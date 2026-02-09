@@ -85,5 +85,3 @@ VALIDATE $? "Using Catalogue"
 show collections
 VALIDATE $? "Show Collections"
 
-db.products.find()
-VALIDATE $? "db p"
