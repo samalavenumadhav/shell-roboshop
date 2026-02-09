@@ -27,11 +27,11 @@ for instance in $@
             else
 
              IP=$(
-            aws ec2 describe-instances \
-            --instance-ids $INSTANCE_ID \
-            --query 'Reservations[].Instances[].PrivateIpAddress' \
-            --output text
-             )
+                 aws ec2 describe-instances \
+                 --instance-ids $INSTANCE_ID \
+                 --query 'Reservations[].Instances[].PrivateIpAddress' \
+                 --output text
+                 )
              RECORD_NAME="$instance.$DOMAIN_NAME"
 
           fi
