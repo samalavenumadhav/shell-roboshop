@@ -85,3 +85,5 @@ VALIDATE $? "Using Catalogue"
 show collections
 VALIDATE $? "Show Collections"
 
+Systemctl restart catalogue
+VALIDATE $? "Restarting catalogue"
