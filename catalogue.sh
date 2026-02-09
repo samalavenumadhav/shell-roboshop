@@ -14,6 +14,7 @@ if [ $USERID -ne 0 ]; then
     echo -e "$R Please run this script with the root user" | tee -a $LOGS_FILE
     exit 1
 fi
+
 mkdir -p $LOGS_FOLDER
 
 VALIDATE(){
@@ -61,3 +62,26 @@ systemctl enable catalogue
 systemctl start catalogue
 VALIDATE $? "Starting and Enabling Catalogue"
 
+cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
+VALIDATE $? "Creating repo"
+
+dnf install mongodb-mongosh -y
+VALIDATE $? "Installing mongosh"
+
+mongosh --host mongodb.samala.online </app/db/master-data.js
+VALIDATE $? "master-data.js"
+
+mongosh --host mongodb.samala.online
+VALIDATE $? "server"
+
+show dbs
+VALIDATE $? "Show Dbs"
+
+use catalogue
+VALIDATE $? "Using Catalogue"
+
+show collections
+VALIDATE $? "Show Collections"
+
+db.products.find()
+VALIDATE $?"db p"
