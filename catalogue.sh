@@ -48,8 +48,8 @@ id roboshop &>>LOGS_FILE
 
 
 
-mkdir /app
-VALIDATE $? "Creating Directory"
+mkdir -p /app 
+VALIDATE $? "Creating app directory"
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
 VALIDATE $? "Downloading Catalogue Code"
