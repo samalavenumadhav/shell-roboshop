@@ -3,7 +3,7 @@
 SG_ID="sg-04bf207726913681f"
 AMI_ID="ami-0220d79f3f480ecf5"
 ZONE_ID="Z0935977CBYGA1Y5S3YB"
-DOMAIN_NAME="samala.online"
+DOMAIN_NAME="samala.online"s
 
 for instance in $@
      do
