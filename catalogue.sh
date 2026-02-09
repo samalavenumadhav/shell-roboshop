@@ -67,23 +67,18 @@ VALIDATE $? "Starting and Enabling Catalogue"
 cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "Creating repo"
 
-dnf install mongodb-mongosh -y
-VALIDATE $? "Installing mongosh"
+dnf install mongodb-mongosh -y 
+VALIDATE $? "Mongosh"
 
-mongosh --host mongodb.samala.online </app/db/master-data.js
-VALIDATE $? "master-data.js"
+INDEX=$(mongosh --host $MONGODB_HOST --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
 
-mongosh --host mongodb.samala.online
-VALIDATE $? "server"
 
-show dbs
-VALIDATE $? "Show Dbs"
+if [ $INDEX -le 0 ]; then
+    mongosh --host $MONGODB_HOST </app/db/master-data.js
+    VALIDATE $? "Loading products"
+else&>>LOGS_FILE
+    echo -e "Products already loaded ... $Y SKIPPING $N"
+fi
 
-use catalogue
-VALIDATE $? "Using Catalogue"
-
-show collections
-VALIDATE $? "Show Collections"
-
-Systemctl restart catalogue
+systemctl restart catalogue
 VALIDATE $? "Restarting catalogue"
