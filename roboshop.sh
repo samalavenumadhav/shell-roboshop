@@ -58,6 +58,7 @@ for instance in $@
             }
         ]
       }
+      '
        echo "record updated for $instance"
 
      done
