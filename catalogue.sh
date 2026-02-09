@@ -42,7 +42,9 @@ id roboshop &>>LOGS_FILE
         VALIDATE $? "Creating system User"
 
     else
-    echo -e "Roboshop user already exist....$Y SKIPPING $N"    
+    echo -e "Roboshop user already exist....$Y SKIPPING $N"   
+
+    fi 
 
 
 
@@ -85,8 +87,8 @@ INDEX=$(mongosh --host $MONGODB_HOST --quiet  --eval 'db.getMongo().getDBNames()
 if [ $INDEX -le 0 ]; then
     mongosh --host $MONGODB_HOST </app/db/master-data.js
     VALIDATE $? "Loading products"
-else&>>LOGS_FILE
-    echo -e "Products already loaded ... $Y SKIPPING $N"
+else
+    echo -e "Products already loaded ... $Y SKIPPING $N" &>>LOGS_FILE
 fi
 
 systemctl restart catalogue
