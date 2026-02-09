@@ -51,7 +51,7 @@ for instance in $@
                 "TTL": 1,
                 "ResourceRecords": [
                 {
-                    "Value": "$IP"
+                    "Value": "'$IP'"
                 }
                 ]
             }
