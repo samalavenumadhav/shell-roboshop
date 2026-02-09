@@ -10,7 +10,7 @@ N="\e[0m"
 SCRIPT_DIR=$PWD 
 MongoDB_HOST=mongodb.samala.online
 
-if [ USERID -ne 0 ]; then
+if [ $USERID -ne 0 ]; then
     echo -e "$R Please run this script with the root user" | tee -a $LOGS_FILE
     exit 1
 fi
