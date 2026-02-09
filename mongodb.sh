@@ -29,7 +29,7 @@ VALIDATE $? "copying Mongo.Repo"
 dnf install mongodb-org -y &>>$LOGS_FILE
 VALIDATE $? "Installing MongoDB Server"
 
-Systemctl enable mongod &>>$LOGS_FILE
+systemctl enable mongod &>>$LOGS_FILE
 VALIDATE $? "Enable Mongodb"
 
 systemctl start mongod
