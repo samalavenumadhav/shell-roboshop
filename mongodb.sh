@@ -9,7 +9,7 @@ Y="\e[33m"
 N="\e[0m"
 
 if [ $USERID -ne 0 ]; then
-    echo -e "$ Please Run This Script with root user access $N" | tee -a $LOGS_FILE
+    echo -e "$R Please Run This Script with root user access $N" | tee -a $LOGS_FILE
     exit 1
 fi
 mkdir -p $LOGS_FOLDER

@@ -2,7 +2,7 @@
 
 USERID=$(id -u)
 LOGS_FOLDER="var/log/shell-roboshop"
-LOGS_FILE=$LOGS_FOLDER/$0.log"
+LOGS_FILE="$LOGS_FOLDER/$0.log"
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
@@ -11,8 +11,8 @@ $SCRIPT_DIR=$PWD
 
 
 if [ $USERID -ne 0 ]; then
-        echo -e "$R Please run this script with root user access $N" | tee -a $LOGS_FILE
-        exit 1
+    echo -e "$R Please Run This Script with root user access $N" | tee -a $LOGS_FILE
+    exit 1
 fi
 
 mkdir -p $LOGS_FOLDER
@@ -25,8 +25,9 @@ else
         echo -e "$2....$S SUCCESS $N" | tee -a $LOGS_FILE
 fi
  }
+
  dnf module disable nodejs -y
-dnf module enable nodejs:20 -y
+dnf module enable nodejs:20 -y &>>LOGS_FILE
 VALIDATE $? "Disable Default Version and Enable NodeJS 20"
 
 dnf install nodejs -y
