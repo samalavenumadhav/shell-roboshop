@@ -36,7 +36,7 @@ else
     echo -e "Roboshop user already exit....$Y SKIPPING $N" 
 fi
 
-mkdir /app 
+mkdir -p /app 
 VALIDATE $? "Creating Directory"
 
 curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip &>>LOGS_FILE
