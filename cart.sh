@@ -34,7 +34,7 @@ VALIDATE $? "Disable Default Version and Enable NodeJS 20"
 dnf install nodejs -y &>>LOGS_FILE
 VALIDATE $? "Installing NodeJS"
 
-id roboshop &>>LOGS_FILE
+id roboshop &>>$LOGS_FILE
 if [ $? -ne o ]; yhen
 
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
@@ -42,6 +42,7 @@ if [ $? -ne o ]; yhen
 else
     echo -e "Roboshop user already exit....$Y SKIPPING $N"
 fi
+
 mkdir /app 
 VALIDATE $? "Creating directory"
 
