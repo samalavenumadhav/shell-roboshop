@@ -22,7 +22,7 @@ for instance in $@
             --query 'Reservations[].Instances[].PublicIpAddress' \
             --output text
              )
-             RECIRD_NAME="$DOMAIN_NAME"
+             RECORD_NAME="$DOMAIN_NAME"
           
             else
 
