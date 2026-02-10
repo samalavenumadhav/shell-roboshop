@@ -44,6 +44,7 @@ VALIDATE $? "Downloading Payment Zip Code"
 
 cd /app 
 VALIDATE $? "Moving to App Directory"
+
 rm -rf /app/*
 VALIDATE $? "Removing Existing Code" &>>LOGS_FILE
 
