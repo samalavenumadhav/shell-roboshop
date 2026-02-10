@@ -59,7 +59,7 @@ VALIDATE $? "Unzip Cart Code"
 
 cd /app 
 npm install &>>LOGS_FILE
-VALIDATE "Installing Dependies" 
+VALIDATE $? "Installing Dependies" 
 
 cp $SCRIPT_DIR/cart.service /etc/systemd/system/cart.service
 VALIDATE $? "Created Systemctl service"
