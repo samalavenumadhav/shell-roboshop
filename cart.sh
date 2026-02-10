@@ -26,11 +26,11 @@ else
 fi
  }
 
- dnf module disable nodejs -y
+ dnf module disable nodejs -y &>>LOGS_FILE
 dnf module enable nodejs:20 -y &>>LOGS_FILE
 VALIDATE $? "Disable Default Version and Enable NodeJS 20"
 
-dnf install nodejs -y
+dnf install nodejs -y &>>LOGS_FILE
 VALIDATE $? "Installing NodeJS"
 
 useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
@@ -54,6 +54,6 @@ cp $SCRIPT_DIR/cart.service /etc/systemd/system/cart.service
 VALIDATE $? "Created Systemctl service"
 
 systemctl daemon-reload
-systemctl enable cart 
+systemctl enable cart &>>LOGS_FILE
 systemctl start cart
 Validate $? "Enable and Start Cart"
