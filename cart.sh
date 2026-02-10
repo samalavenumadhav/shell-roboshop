@@ -18,7 +18,7 @@ fi
 mkdir -p $LOGS_FOLDER
 
 VALIDATE(){
-if [ $1 -ne 0 ; then
+if [ $1 -ne 0 ]; then
         echo -e "$2....$R FAILURE $N" | tee -a $LOGS_FILE
         exit 1
 else
@@ -37,14 +37,14 @@ useradd --system --home /app --shell /sbin/nologin --comment "roboshop system us
 VALIDATE $? "Creatind Systen User"
 
 mkdir /app 
-Validate $? "Creating directory"
+VALIDATE $? "Creating directory"
 
 curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip
 VALIDATE $? "Downloading Cart Code"
 
 cd /app 
 unzip /tmp/cart.zip
-Validate $? "Unzip Cart Code"
+VALIDATE $? "Unzip Cart Code"
 
 cd /app 
 npm install
@@ -56,4 +56,4 @@ VALIDATE $? "Created Systemctl service"
 systemctl daemon-reload
 systemctl enable cart &>>LOGS_FILE
 systemctl start cart
-Validate $? "Enable and Start Cart"
+VALIDATE $? "Enable and Start Cart"
