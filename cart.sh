@@ -1,7 +1,7 @@
 #!/bin/bash
 
 USERID=$(id -u)
-LOGS_FOLDER="var/log/shell-roboshop"
+LOGS_FOLDER="/var/log/shell-roboshop"
 LOGS_FILE="$LOGS_FOLDER/$0.log"
 R="\e[31m"
 G="\e[32m"
@@ -37,7 +37,7 @@ VALIDATE $? "Installing NodeJS"
 id roboshop &>>$LOGS_FILE
 if [ $? -ne 0 ]; then 
 
-    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>LOGS_FILE
     VALIDATE $? "Creating Systen User"
 else
     echo -e "Roboshop user already exit....$Y SKIPPING $N"
@@ -46,15 +46,19 @@ fi
 mkdir -p /app 
 VALIDATE $? "Creating directory"
 
-curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip
+curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip &>>LOGS_FILE
 VALIDATE $? "Downloading Cart Code"
 
 cd /app 
+
+rm -rf /app/*
+VALIDATE $? "Removing Existing Code" &>>$LOGS_FILE
+
 unzip /tmp/cart.zip
 VALIDATE $? "Unzip Cart Code"
 
 cd /app 
-npm install
+npm install &>>LOGS_FILE
 VALIDATE "Installing Dependies" 
 
 cp $SCRIPT_DIR/cart.service /etc/systemd/system/cart.service
