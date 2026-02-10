@@ -21,6 +21,7 @@ VALIDATE(){
         echo -e "$2....$R FAILURE $N" | tee -a $LOGS_FILE
     else
         echo -e "$2....$G SUCCESS $N" | tee -a $LOGS_FILE
+    fi
 }
 
 dnf install maven -y &>>LOGS_FILE
