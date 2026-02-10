@@ -8,6 +8,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 SCRIPT_DIR=$PWD
+MYSQL_HOST=mysql.samala.online
 
 if [ $USERID -ne 0 ]; then      
         echo -e $R Plerase run this script with root user acccess $N | tee -a $LOGS_FILE
