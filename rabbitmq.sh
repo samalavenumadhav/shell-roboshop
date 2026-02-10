@@ -7,7 +7,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-
+SCRIPT_DIR=$PWD
 MYSQL_HOST=mysql.samala.online
 
 if [ $USERID -ne 0 ]; then
@@ -37,5 +37,5 @@ systemctl start rabbitmq-server
 VALIDATE $? "Enable and start Rabbitmq Server"
 
 rabbitmqctl add_user roboshop roboshop123 &>>LOGS_FILE
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &LOGS_FILE
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>LOGS_FILE
 VALIDATE $? "Creating User and Setting Permissions"
