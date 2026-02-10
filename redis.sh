@@ -1,5 +1,6 @@
 #!/bin/bash
 
+USERID=$(id -u)
 LOGS_FOLDER="/var/log/shell-roboshop"
 LOGS_FILE="$LOGS_FOLDER/$0.log"
 R="\e[31m"
@@ -8,7 +9,7 @@ Y="\e[33m"
 N="\e[0m"
 
 if [ $USERID -ne 0 ]; then
-        echo -e "$R Please run this script root user $N" | tee -a $LOGS_FILE
+        echo -e "$R Please run this script root user access $N" | tee -a $LOGS_FILE
         exit 1
 
 fi
