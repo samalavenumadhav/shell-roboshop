@@ -52,6 +52,10 @@ VALIDATE $? "Downloading user code"
 cd /app
 VALIDATE $? "Moving to app directory"
 
+rm -rf /app/*
+VALIDATE $? "Removing Existing Code" &>>LOGS_FILE
+
+
 unzip /tmp/user.zip
 VALIDATE $? "Unzip User Code"
 
@@ -60,7 +64,7 @@ npm install
 VALIDATE $? "Installing dependencies"
 
 cp $SCRIPT_DIR/user.servive /etc/systemd/system/user.service
-VALIDATE $? "Created Systemclt Service"
+VALIDATE $? "Created systemclt service"
 
 systemctl daemon-reload
 systemctl enable user 
